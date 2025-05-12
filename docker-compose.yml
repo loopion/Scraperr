@@ -9,8 +9,8 @@ services:
     container_name: scraperr
     command: ["npm", "run", "start"]
     environment:
-      - NEXT_PUBLIC_API_URL=$SERVICE_FQDN_SCRAPPER_8458 # your API URL
-      - SERVER_URL=$SERVICE_FQDN_SCRAPPER_8458 # your docker container API URL
+      - NEXT_PUBLIC_API_URL=${SERVICE_FQDN_SCRAPPER_8458} # your API URL
+      - SERVER_URL=${SERVICE_FQDN_SCRAPPER_8458} # your docker container API URL
       - REGISTRATION_ENABLED=FALSE
       - DEFAULT_USER_EMAIL=${SERVICE_USER_SCRAPPER}@test.com
       - DEFAULT_USER_PASSWORD=${SERVICE_PASSWORD_SCRAPPER}
