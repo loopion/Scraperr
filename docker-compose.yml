@@ -9,8 +9,8 @@ services:
     container_name: scraperr
     command: ["npm", "run", "start"]
     environment:
-      - NEXT_PUBLIC_API_URL=http://scraperr_api:8458 # your API URL
-      - SERVER_URL=http://scraperr_api:8458 # your docker container API URL
+      - NEXT_PUBLIC_API_URL=SERVICE_FQDN_SCRAPPER:8458 # your API URL
+      - SERVER_URL=SERVICE_FQDN_SCRAPPER:8458 # your docker container API URL
     networks:
       - web
   scraperr_api:
@@ -21,6 +21,9 @@ services:
       dockerfile: docker/api/Dockerfile
     environment:
       - LOG_LEVEL=INFO
+      - SECRET_KEY=SERVICE_PASSWORD_SECRET_KEY # used to encode authentication tokens (can be a random string)
+      - ALGORITHM=HS256 # authentication encoding algorithm
+      - ACCESS_TOKEN_EXPIRE_MINUTES=600 # access token expire minutes
     container_name: scraperr_api
     ports:
       - 8458:8458
