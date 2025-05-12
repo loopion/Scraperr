@@ -10,7 +10,7 @@ services:
     command: ["npm", "run", "start"]
     environment:
       - NEXT_PUBLIC_API_URL=${SERVICE_FQDN_SCRAPPER_8458} # your API URL
-      - SERVER_URL=${SERVICE_FQDN_SCRAPPER_8458} # your docker container API URL
+      - SERVICE_FQDN_SCRAPPER_8458 # your docker container API URL
       - REGISTRATION_ENABLED=FALSE
       - DEFAULT_USER_EMAIL=${SERVICE_USER_SCRAPPER}@test.com
       - DEFAULT_USER_PASSWORD=${SERVICE_PASSWORD_SCRAPPER}
@@ -19,6 +19,13 @@ services:
       - 3864:3864
     networks:
       - web
+    healthcheck:
+      test:
+        - CMD-SHELL
+        - 'wget -qO- http://127.0.0.1:8458/'
+      interval: 5s
+      timeout: 20s
+      retries: 10
   scraperr_api:
     init: True
     image: jpyles0524/scraperr_api:latest
