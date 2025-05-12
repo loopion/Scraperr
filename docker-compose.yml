@@ -15,6 +15,8 @@ services:
       - DEFAULT_USER_EMAIL=${SERVICE_USER_SCRAPPER}@test.com
       - DEFAULT_USER_PASSWORD=${SERVICE_PASSWORD_SCRAPPER}
       - DEFAULT_USER_FULL_NAME=${SERVICE_USER_SCRAPPER}
+    ports:
+      - 80:3864
     networks:
       - web
   scraperr_api:
